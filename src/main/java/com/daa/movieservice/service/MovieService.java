@@ -1,9 +1,6 @@
 package com.daa.movieservice.service;
 
-import com.daa.movieservice.api.dto.CrewDto;
-import com.daa.movieservice.api.dto.MovieDto;
-import com.daa.movieservice.api.dto.ReviewDto;
-import com.daa.movieservice.api.dto.ShortMovieDto;
+import com.daa.movieservice.api.dto.*;
 import com.daa.movieservice.model.Movie;
 import com.daa.movieservice.repository.MovieRepository;
 import com.daa.movieservice.repository.ReviewRepository;
@@ -36,10 +33,6 @@ public class MovieService {
         return movie.map(mapMovieToMovieDto).get();
     }
 
-    public List<CrewDto> getMovScore(Long id) { // todo change return type and add implementation
-        return null;
-    }
-
 
     public MovieDto getMovById(Long id) {
         return movieRepository
@@ -56,9 +49,19 @@ public class MovieService {
     }
 
     public List<ShortMovieDto> getTopMovies(Integer number) {
-        return movieRepository.getTop(number)
+        List<ShortMovieDto> list = movieRepository.getTop(number)
                 .stream()
                 .map(mapMovieToShortMovieDto)
                 .collect(Collectors.toList());
+
+        for (ShortMovieDto smd : list) {
+            smd.setRating(getMovScore(smd.getId())
+                            .getScore());
+        }
+        return list;
+    }
+
+    public ScoreDto getMovScore(Long id){
+        return new ScoreDto(movieRepository.getMovieScoresById(id));
     }
 }

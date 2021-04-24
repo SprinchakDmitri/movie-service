@@ -14,4 +14,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             "ORDER BY m.budget LIMIT :limit", nativeQuery = true)
     List<Movie> getTop(@Param("limit") Integer limit);
 
+    @Query(value = "SELECT score FROM t_movies inner JOIN t_users_movie_ratings on " +
+            " t_movies.id = t_users_movie_ratings.movie_id WHERE t_movies.id = :movId", nativeQuery = true)
+    List<Integer> getMovieScoresById(Long movId);
 }

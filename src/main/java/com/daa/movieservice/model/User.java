@@ -31,6 +31,8 @@ public class User {
     @Column(name = "username")
     private String userName;
 
+//    private String password;
+
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private Set<Article> articles;

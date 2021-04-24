@@ -1,9 +1,6 @@
 package com.daa.movieservice.api.restcontroller;
 
-import com.daa.movieservice.api.dto.CrewDto;
-import com.daa.movieservice.api.dto.MovieDto;
-import com.daa.movieservice.api.dto.ReviewDto;
-import com.daa.movieservice.api.dto.ShortMovieDto;
+import com.daa.movieservice.api.dto.*;
 import com.daa.movieservice.model.Movie;
 import com.daa.movieservice.service.CrewService;
 import com.daa.movieservice.service.MovieService;
@@ -54,7 +51,7 @@ public class MovieController {
     }
 
     @GetMapping("/getScore")
-    public List<CrewDto> getMovieScore (@RequestParam(name = "filmId") Long id){
+    public ScoreDto getMovieScore (@RequestParam(name = "filmId") Long id){
         return movieService.getMovScore(id);
     }
 }

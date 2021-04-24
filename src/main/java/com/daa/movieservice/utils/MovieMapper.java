@@ -5,7 +5,11 @@ import com.daa.movieservice.api.dto.MovieDto;
 import com.daa.movieservice.api.dto.ReviewDto;
 import com.daa.movieservice.api.dto.ShortMovieDto;
 import com.daa.movieservice.model.*;
+import com.daa.movieservice.repository.MovieRepository;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -39,6 +43,7 @@ public class MovieMapper {
     public static final Function<Movie, ShortMovieDto> mapMovieToShortMovieDto = movie -> ShortMovieDto.builder()
             .id(movie.getId())
             .movTitle(movie.getMovieTitle())
+            .movIcon(movie.getImage())
             .countries(movie.getCountries().stream().map(Country::getCountryName).collect(Collectors.toSet()))
             .genres(movie.getGenres().stream().map(Genre::getGenreName).collect(Collectors.toSet()))
             .origName(movie.getMovieTitle())  //todo implement rating and image

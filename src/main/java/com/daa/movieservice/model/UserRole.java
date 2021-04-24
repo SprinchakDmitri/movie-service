@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,11 +14,12 @@ import java.util.Set;
 @Table(name = "t_user_roles")
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRole {
+public class UserRole implements GrantedAuthority {
     @Id
     private Long id;
 
     @Column(name = "role_type")
+  //  @Enumerated(EnumType.STRING)
     private String roleType;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -25,4 +27,9 @@ public class UserRole {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     @EqualsAndHashCode.Exclude
     private Set<User> users;
+
+    @Override
+    public String getAuthority(){
+        return this.roleType.toString();
+    }
 }

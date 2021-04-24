@@ -26,6 +26,9 @@ public class Movie {
     @Column(name = "slogan")
     private String slogan;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "budget")
     private Integer budget;
 
