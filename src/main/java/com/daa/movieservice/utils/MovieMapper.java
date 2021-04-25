@@ -20,7 +20,7 @@ public class MovieMapper {
             .id(movie.getId())
             .movTitle(movie.getMovieTitle())
             .description(movie.getDescription())
-            .slogan(movie.getSlogan())                          //todo implement image
+            .slogan(movie.getSlogan())
             .budget(movie.getBudget())
             .duration(movie.getDuration())
             .premiereDate(movie.getPremiereDate())
@@ -28,6 +28,8 @@ public class MovieMapper {
             .ratingMppa(movie.getRatingMppa())
             .origLang(movie.getOriginalLanguage())
             .boxOffice(movie.getBoxOffice())
+            .countries(movie.getCountries().stream().map(Country::getCountryName).collect(Collectors.toSet()))
+            .genres(movie.getGenres().stream().map(Genre::getGenreName).collect(Collectors.toSet()))
             .build();
 
     public static final Function<Review, ReviewDto> mapReviewToReviewDto = review -> ReviewDto.builder()

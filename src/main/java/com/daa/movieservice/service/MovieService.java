@@ -1,6 +1,8 @@
 package com.daa.movieservice.service;
 
 import com.daa.movieservice.api.dto.*;
+import com.daa.movieservice.model.Country;
+import com.daa.movieservice.model.Genre;
 import com.daa.movieservice.model.Movie;
 import com.daa.movieservice.repository.MovieRepository;
 import com.daa.movieservice.repository.ReviewRepository;
@@ -63,5 +65,22 @@ public class MovieService {
 
     public ScoreDto getMovScore(Long id){
         return new ScoreDto(movieRepository.getMovieScoresById(id));
+    }
+
+    public List<String> getMovieGenres(Long id) {
+        return movieRepository.findById(id)
+                .get().getGenres()
+                .stream()
+                .map(Genre::getGenreName)
+                .collect(Collectors.toList());
+
+   }
+
+    public List<String> getMovieCountries(Long id) {
+        return movieRepository.findById(id)
+                .get().getCountries()
+                .stream()
+                .map(Country::getCountryName)
+                .collect(Collectors.toList());
     }
 }

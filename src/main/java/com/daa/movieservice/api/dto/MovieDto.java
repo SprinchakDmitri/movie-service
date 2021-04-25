@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -24,4 +25,6 @@ public class MovieDto {
     private String ratingMppa;
     private String origLang;
     private Integer boxOffice;
+    private Set<String> countries;
+    private Set<String> genres;
 }

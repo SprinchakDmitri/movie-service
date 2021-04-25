@@ -54,5 +54,15 @@ public class MovieController {
     public ScoreDto getMovieScore (@RequestParam(name = "filmId") Long id){
         return movieService.getMovScore(id);
     }
+
+    @GetMapping("/getGenres")
+    public List<String> getMovieGenre(@RequestParam(name = "filmId") Long id){
+        return movieService.getMovieGenres(id);
+    }
+
+    @GetMapping("/getCountries")
+    public List<String> getMovieCountries(@RequestParam(name = "filmId")Long id){
+        return movieService.getMovieCountries(id);
+    }
 }
 

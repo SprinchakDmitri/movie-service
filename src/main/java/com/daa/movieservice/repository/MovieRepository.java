@@ -17,4 +17,5 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query(value = "SELECT score FROM t_movies inner JOIN t_users_movie_ratings on " +
             " t_movies.id = t_users_movie_ratings.movie_id WHERE t_movies.id = :movId", nativeQuery = true)
     List<Integer> getMovieScoresById(Long movId);
+
 }
