@@ -50,6 +50,9 @@ public class Movie {
     @Column(name = "original_language")
     private String originalLanguage;
 
+    @Column(name = "trailer")
+    private String trailer;
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_movies_countries",
             joinColumns = @JoinColumn(name = "movie_id"),

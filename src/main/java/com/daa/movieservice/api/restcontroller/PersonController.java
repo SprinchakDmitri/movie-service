@@ -2,6 +2,7 @@ package com.daa.movieservice.api.restcontroller;
 
 import com.daa.movieservice.api.dto.CrewDto;
 import com.daa.movieservice.api.dto.PersonDto;
+import com.daa.movieservice.api.dto.ShortPersonDto;
 import com.daa.movieservice.model.Person;
 import com.daa.movieservice.service.CrewService;
 import com.daa.movieservice.service.PersonService;
@@ -43,6 +44,10 @@ public class PersonController {
         Map<String, List<String>> map = new HashMap<>();
         map.put("roles", personService.getRoleByPersonsId(id));
         return map;
+    }
 
+    @GetMapping("/search/{name}")
+    public List<ShortPersonDto> searchPersonByNameContains(@PathVariable(name = "name") String name){
+        return personService.searchPersonByName(name);
     }
 }

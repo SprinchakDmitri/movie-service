@@ -25,6 +25,7 @@ public class MovieDto {
     private String ratingMppa;
     private String origLang;
     private Integer boxOffice;
+    private String trailer;
     private Set<String> countries;
     private Set<String> genres;
 }

@@ -83,4 +83,12 @@ public class MovieService {
                 .map(Country::getCountryName)
                 .collect(Collectors.toList());
     }
+
+    public List<ShortMovieDto> searchByTitle(String title) {
+        return movieRepository.findMoviesByMovieTitleContains(title)
+                .stream()
+                .limit(3)
+                .map(mapMovieToShortMovieDto)
+                .collect(Collectors.toList());
+    }
 }

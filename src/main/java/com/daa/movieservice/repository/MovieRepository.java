@@ -18,4 +18,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
             " t_movies.id = t_users_movie_ratings.movie_id WHERE t_movies.id = :movId", nativeQuery = true)
     List<Integer> getMovieScoresById(Long movId);
 
+
+    List<Movie> findMoviesByMovieTitleContains(String title);
 }

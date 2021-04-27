@@ -64,5 +64,10 @@ public class MovieController {
     public List<String> getMovieCountries(@RequestParam(name = "filmId")Long id){
         return movieService.getMovieCountries(id);
     }
+
+    @GetMapping("/search/{title}")
+    public List<ShortMovieDto> getMoviesByTitleContains(@PathVariable String title){
+        return movieService.searchByTitle(title);
+    }
 }
 

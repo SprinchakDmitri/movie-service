@@ -28,6 +28,7 @@ public class MovieMapper {
             .ratingMppa(movie.getRatingMppa())
             .origLang(movie.getOriginalLanguage())
             .boxOffice(movie.getBoxOffice())
+            .trailer(movie.getTrailer())
             .countries(movie.getCountries().stream().map(Country::getCountryName).collect(Collectors.toSet()))
             .genres(movie.getGenres().stream().map(Genre::getGenreName).collect(Collectors.toSet()))
             .build();
