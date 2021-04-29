@@ -9,13 +9,31 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.daa</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>movie-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Spring boot movie service</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
     </properties>
+		<repositories>
+		<repository>
+		  <id>spring-milestones</id>
+		  <name>Spring Milestones</name>
+		  <url>https://repo.spring.io/milestone</url>
+		</repository>
+	  </repositories>
+	<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Finchley.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -34,7 +52,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>
+			<version>1.0.0.M2</version>
+		</dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
@@ -43,7 +65,6 @@
 <!--            <groupId>org.thymeleaf.extras</groupId>-->
 <!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
 <!--        </dependency>-->
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -64,8 +85,13 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.19.0</version>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
