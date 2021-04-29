@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: movie-service-deployment
+  namespace: development
+  labels:
+    app: movie-service-app
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        apps: movie-service
+    spec:
+      containers:
+      - name: movie-service
+        image: gcr.io/movie-project-311511/movie-service:development
+        ports:
+        - containerPort: 8081
