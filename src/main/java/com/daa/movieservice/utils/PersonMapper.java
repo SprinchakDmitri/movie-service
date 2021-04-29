@@ -28,6 +28,8 @@ public class PersonMapper {
 
     public static final Function<Person, ShortPersonDto> mapPersonToShortPersonDto = person -> ShortPersonDto.builder()
             .name(person.getFirstName() + " " + person.getLastName())
+            .id(person.getId())
+            .image(person.getEncodedPhoto())
             .birthDate(person.getBirthDate().toString())
             .roles(person.getRoles().stream().map(Role::getRoleName).collect(Collectors.toSet()))
             .build();

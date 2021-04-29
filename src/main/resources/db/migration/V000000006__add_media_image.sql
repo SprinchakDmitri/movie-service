@@ -1,0 +1,1 @@
+ALTER TABLE IF EXISTS t_articles ADD COLUMN image varchar(2048);
