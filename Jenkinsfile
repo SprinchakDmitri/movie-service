@@ -43,28 +43,31 @@ spec:
             }
         }
 
-        stage('Build & Test') {
+      stage('Build') {
             steps {
                 // Run Maven on a Unix agent.
                 sh "chmod +x mvnw"
                 sh './mvnw clean package'
-              
-                //sh 'true'
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-
-
+        }
+        stage('Test') {
+            steps {
+                 sh './mvnw test'   
+            }
             post {
                 always {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
+                    
+                                        emailext attachLog: true,
+                    body: 'Please go to ${BUILD_URL} and verify the build',
+                    compressLog: true,
+                    recipientProviders: [upstreamDevelopers(), requestor()],
+                    subject: 'Job \'${JOB_NAME}\' (${BUILD_NUMBER}) is waiting for input'
                 }
             }
-        }
-        
-        stage('Build Docker Image & Push to Registry') {
+         }
+        stage('Build and Push Image') {
             steps {
              container('gcloud') {
                  
